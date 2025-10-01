@@ -20,6 +20,6 @@ from empleadoApp.views import empleadoData, crearEmpleado
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('empleados/', empleadoData),
-    path('crearEmpleado/', crearEmpleado),
+    path('empleados/', empleadoData, name="empleadosData"),
+    path('crearEmpleado/', crearEmpleado, name="crearEmpleado"),
 ]

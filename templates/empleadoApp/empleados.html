@@ -22,6 +22,8 @@
             Empleados 👨
         </div>
 
+        <a href="{% url 'crearEmpleado' %}" class="btn btn-primary">Crear empleado</a>
+
         <table id="tbEmpleados" class="table table-striped">
             <thead>
                 <tr>
@@ -33,24 +35,18 @@
                 </tr>
             </thead>
             <tbody>
-                {% if empleados %}
                 {% for emp in empleados %}
                 <tr>
                     <td>{{emp.id}}</td>
                     <td>{{emp.nombre}}</td>
                     <td>{{emp.email}}</td>
                     <td>{{emp.telefono}}</td>
-                    <td class="text-center"> 
-                        <a href="#eliminar" class="text-danger me-5"><i class="bi bi-trash"></i></a> 
-                        <a href="#editar" class="text-warning"><i class="bi bi-pen"></i></a> 
+                    <td class="text-center">
+                        <a href="#eliminar" class="text-danger me-5"><i class="bi bi-trash"></i></a>
+                        <a href="#editar" class="text-warning"><i class="bi bi-pen"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
-                {% else %}
-                <tr>
-                    <h3>No hay empleados en la DB</h3>
-                </tr>
-                {% endif %}
             </tbody>
 
         </table>

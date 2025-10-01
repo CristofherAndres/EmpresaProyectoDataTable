@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from empleadoApp.views import empleadoData, crearEmpleado
+from empleadoApp.views import empleadoData, crearEmpleado, editarEmpleado, eliminarEmpleado
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('empleados/', empleadoData, name="empleadosData"),
     path('crearEmpleado/', crearEmpleado, name="crearEmpleado"),
+    path('editarEmpleado/<int:id>', editarEmpleado, name="editarEmpleado"),
+    path('eliminarEmpleado/<int:id>', eliminarEmpleado, name="eliminarEmpleado"),
 ]

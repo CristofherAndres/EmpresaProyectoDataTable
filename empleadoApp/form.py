@@ -12,7 +12,13 @@ class EmpleadoRegistroForm(forms.Form):
         ]
     )
     email = forms.CharField(max_length=50)
-    telefono = forms.CharField(max_length=15)
+    telefono = forms.CharField(required=False)
+
+    def clean_email(self):
+        inputEmail = self.cleaned_data['email']
+        if inputEmail.find('@') == -1:
+            raise forms.ValidationError("El correo debe contener un @")
+        return inputEmail
 
     nombre.widget.attrs['class'] = 'form-control'
     email.widget.attrs['class'] = 'form-control'

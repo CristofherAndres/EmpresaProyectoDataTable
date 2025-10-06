@@ -1,11 +1,12 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ejemplo DataTable</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.5/css/buttons.bootstrap5.css">
 
@@ -42,22 +43,46 @@
                     <td>{{emp.email}}</td>
                     <td>{{emp.telefono}}</td>
                     <td class="text-center">
-                        <a href="{% url 'eliminarEmpleado' emp.id %}" class="text-danger me-5"><i class="bi bi-trash"></i></a>
+
+                        <a href="#" class="text-danger me-5" data-bs-toggle="modal" data-bs-target="#modelEliminarEmp{{emp.id}}"><i class="bi bi-trash"></i></a>
+
                         <a href="{% url 'editarEmpleado' emp.id %}" class="text-warning"><i class="bi bi-pen"></i></a>
+
                     </td>
                 </tr>
 
+                <div class="modal fade" id="modelEliminarEmp{{emp.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel"> <i
+                                        class="bi bi-exclamation-triangle-fill me-2"></i> Confirmar Eliminación </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <i class="bi bi-person-x-fill" style="font-size: 3rem;"></i>
+                                <h5 class="mt-2">¿Estás seguro de eliminar al empleado {{emp.id}}?</h5>
+                                <p class="text-body-secondary">
+                                    Esta acción no se puede deshacer y los datos del empleado se eliminaran
+                                    permanentemente.
+                                </p>
+                            </div>
+                            <div class="modal-footer justify-content-center border-0 pb-4">
+                                <button type="button" class="btn btn-secondary px-4"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <a type="button" href="{% url 'eliminarEmpleado' emp.id %}" class="btn btn-danger px-4">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 {% endfor %}
             </tbody>
 
         </table>
-
-
-
-
-
 
     </div>
 
@@ -66,7 +91,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.js"></script>
-
     <script src="https://cdn.datatables.net/buttons/3.2.5/js/dataTables.buttons.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.2.5/js/buttons.bootstrap5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
